@@ -34,6 +34,74 @@ http://push.iotcplatform.com:7379/tpns?
 cmd=event&uid={%UID}&customized_payload=base64({"MYTOPIC ":" info"})&debug=1
 
 
+*********************************************************************************************************
+1.	iOS 
+(1)	client 
+/tpns?cmd=client&os=ios&appid={%APPID%}&udid={%UDID%}&token={%TOKEN%}&lang={%LANG %}&bgfetch=1&dev=0
+
+(2)	mapping 
+/tpns?cmd=mapping&os=ios&appid={%APPID%}&uid={%UID%}&udid={%UDID%}&format= e2Rldl9uYW1lfSB7ZXZlbnRfdHlwZX0NCnttc2d9&interval=3&customized_payload=eyJjb250ZW50LWF2YWlsYWJsZSI6MSwiYWxlcnQiOnsidGl0bGUiOnslTVlUT1BJQyV9LCJib2R5Ijp7JU1ZQk9EWSV9fX0=
+
+PS:
+format -> e2Rldl9uYW1lfSB7ZXZlbnRfdHlwZX0NCnttc2d9, base64 decode->
+{dev_name} {event_type}
+{msg}
+
+customized_payload -> eyJjb250ZW50LWF2YWlsYWJsZSI6MSwiYWxlcnQiOnsidGl0bGUiOnslTVlUT1BJQyV9LCJib2R5Ijp7JU1ZQk9EWSV9fX0=
+base64 decode->
+{"content-available":1,"alert":{"title":{%MYTOPIC%},"body":{%MYBODY%}}}
+
+(3)	push
+/tpns?cmd=event&uid={%UID%}&dev_name=DeviceName&event_type=13&msg=MyHouse&customized_payload=eyJNWVRPUElDIjoie1widHlwZVwiOntcIjBcIjpcIm91dFwiLFwiMVwiOlwiaW5cIn19IiwiTVlCT0RZIjoiMCJ9&debug=1
+
+PS:
+customized_payload ->
+eyJNWVRPUElDIjoie1widHlwZVwiOntcIjBcIjpcIm91dFwiLFwiMVwiOlwiaW5cIn19IiwiTVlCT0RZIjoiMCJ9
+
+base64 decode->
+{"MYTOPIC":"{\"type\":{\"0\":\"out\",\"1\":\"in\"}}","MYBODY":"0"}
+
+
+
+
+
+
+
+
+
+
+
+一.	Android 
+
+(1)	client 
+/tpns?cmd=client&os=android&appid={%APPID%}&udid={%UDID%}&token={%TOKEN%}&lang={%LANG %}&bgfetch=1&dev=0
+
+(2)	mapping 
+/tpns?cmd=mapping&os=android&appid={%APPID%}&uid={%UID%}&udid={%UDID%}&format= e2Rldl9uYW1lfSB7ZXZlbnRfdHlwZX0NCnttc2d9&interval=3&customized_payload=eyJjb250ZW50X2F2YWlsYWJsZSI6dHJ1ZSwibm90aWZpY2F0aW9uIjp7InRpdGxlIjp7JU1ZVE9QSUMlfSwiYm9keSI6eyVNWUJPRFklfX19
+
+PS:
+format -> e2Rldl9uYW1lfSB7ZXZlbnRfdHlwZX0NCnttc2d9, base64 decode->
+{dev_name} {event_type}
+{msg}
+
+customized_payload -> eyJjb250ZW50X2F2YWlsYWJsZSI6dHJ1ZSwibm90aWZpY2F0aW9uIjp7InRpdGxlIjp7JU1ZVE9QSUMlfSwiYm9keSI6eyVNWUJPRFklfX19
+base64 decode->
+{"content_available":true,"notification":{"title":{%MYTOPIC%},"body":{%MYBODY%}}}
+
+(4)	push
+/tpns?cmd=event&uid={%UID%}&dev_name=DeviceName&event_type=13&msg=MyHouse&customized_payload=eyJNWVRPUElDIjoie1widHlwZVwiOntcIjBcIjpcIm91dFwiLFwiMVwiOlwiaW5cIn19IiwiTVlCT0RZIjoiMCJ9&debug=1
+
+PS:
+customized_payload ->
+eyJNWVRPUElDIjoie1widHlwZVwiOntcIjBcIjpcIm91dFwiLFwiMVwiOlwiaW5cIn19IiwiTVlCT0RZIjoiMCJ9
+
+base64 decode->
+{"MYTOPIC":"{\"type\":{\"0\":\"out\",\"1\":\"in\"}}","MYBODY":"0"}
+
+
+
+
+
 =======================================================================================
 e-fence
 curl --location --request GET 'http://push.iotcplatform.com:7379/tpns?cmd=event
