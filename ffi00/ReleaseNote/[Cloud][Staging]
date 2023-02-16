@@ -1,0 +1,210 @@
+/*****************************
+ Version: 1.14.2-rc4
+ Date: March 31, 2021
+ *****************************/
+1. Modify API POST /schedule_play/o add babyId as required field
+2. Modify API GET /schedule_play/o for app, use babyId as query condition
+3. Add API GET /schedule_play/d for device, use sn to get schedule play list
+4. fix WeChat bug (feedback by Spencer {"code":10056,"message":"Third party account is invalid","result":null} )
+
+/*****************************
+ Version: 1.14.2-rc3
+ Date: March 26, 2021
+ *****************************/
+Privacy Control:
+1.	Modify API POST /storages/o, add sn field for private control feature. (Cloud needs to know the sn and apply the privacy setting while photo upload)
+2.	Modify API POST /storages/od, add sn field for private control feature. (Cloud needs to know the sn and apply the privacy setting while photo upload from device)
+
+Permission Setting:
+1.	Modify API PUT /members/g/permissions, add permissionType for set member’s permission, 0 means Family album setting, 1 means deice setting
+2.	Modify API GET /members/g/permission, add avator field
+3.	New API GET /members/b/permission, let member get his own setting 
+
+Voice Record
+1.	Modify API POST /contents/o add babyId as required and remove required on sn 
+2.	Modify API GET /contents/o add babyId as query condition and remove accountId
+
+Bug
+1.	fix – baby w/o device binding will cause the failure on member’s permission generating.
+
+/*****************************
+ Version: 1.14.2-rc2
+ Date: March 19, 2021
+ *****************************/
+  1.	Modify API GET /accounts/limit_info, app can use accountId parameter to get the avatar information for photo/video note.
+  2.	Add new invitation limit, the rule is existed members + inviting less than or equal to 5
+  3.	Create temp email for  invitee
+
+  {Known issue}
+  1.	When baby w/o bound any device, the invitee’s permission is empty (Admin can’t get the member’s permission via API GET /members/g/permissions)
+     We plan to fixed by next Wed. (3/24)
+
+/*****************************
+ Version: 1.14.1-rc10
+ Date: March 12, 2021
+ *****************************/
+[Modification]
+  1.	New API DELETE /members/g/invitations (problem#1)
+  2.	Bug fixed - Remove member/unfollow baby (problem#2, #4)
+  3.	Add response field latestNoteEditor on API GET /storages/s/{babyId} (problem #3)
+     Expect you can use the accountId (from latestNoteEditor) to get user name and avatar via API GET /accounts/limit_info
+     But for API GET /accounts/limit_info, it only returns the token owner’s data now.
+     We will add a new input filed “accountId” next Monday(3/15).
+  4.	Remove the API POST accounts/{openId} required rule of birthday field. (problem #6)
+  5.	Update email template, support china, and world wide
+  6. add avatar field on API GET /members/g/permissions, and fixed the bug about the name un-sync problem after modify user profile by API POST accounts/{openId}
+  
+  /* reference */
+  https://docs.google.com/document/d/1wmM4-ftr3jEdRA7IecR23iuTJofKjc1Hoqoxh0WBDYc/edit 
+
+/*****************************
+ Version: 1.14.1-rc8
+ Date: March 5, 2021
+ *****************************/
+[Modification]
+  1.	Implement API PATCH /storages/o for hide/show files
+  2.	Implement API DELETE /members for delete member/unfollow baby
+  3.	modify GET /account/limit_info add registerSource field
+     App can use this to know the user comes from WeChat login or Apple login
+     For detail definition, you can check the swagger.
+  4.	Fix bug, User register from WeChat/Apple SSO can use POST /accounts/{openId} to update profile
+     Note: the API usage for SSO
+     API POST /authorization/check_email/{thirdPartyName}
+         For WeChat please use union id for accountSSO filed
+         For Apple please use sub for accountSSO filed
+         Ex.
+         {
+            “userEmail” : “omaca2@mail.x”,
+            “accountSSO” : “{unionId form wechat/ sub from Apple identify Token}”
+         }
+
+         You can get the unionId (WeChat) or sub (Apple) from response of API /POST /authorization/check_auth/{thirdPartyName}
+         Ex. you can get from the response accountSSO filed
+         {
+            “code” : 0,
+            “message” : “”,
+            “result” : {
+                “accountSSO” : “{unionId from wechat/ sub from Apple identify Token}”
+            }
+         }
+
+
+/*****************************
+ Version: 1.14.1-rc7
+ Date: Febuary 26, 2021
+ *****************************/
+[Modification]
+  • Add schedule play APIs
+    GET /schedule_play/profile      Query schedule play profile
+    POST /schedule_play/o           Create scheduling play plan
+    GET /schedule_play/o            Query schedule of play plan
+    PATCH /schedule_play/o/{sid}    Change scheduling play plan
+    DELETE /schedule_play/o/{sid}   Delete one scheduling play plan
+  • Modify GET /members/g/permissions
+    To return relationship code like DADDY or MOMMY for user to lookup  for multilingual
+[Fixed Issue]
+  • API /check_auth/apple
+
+/*****************************
+ Version: 1.14.1-rc6
+ Date: Febuary 23, 2021
+ *****************************/
+[Modification]
+  • Add Apple SSO, impact API as below
+    POST /authorization/check_auth/{thirdPartyName}
+    POST /authorization/check_email/{thirdPartyName}
+    POST /accounts/bind/{thirdPartyName}
+    POST /accounts/unbind/{thirdPartyName}
+
+  • Image compression
+    Note: whether image cropping is successful or not, the following image compression will be executed.
+
+  • Fixed bug / change by CEB feedback
+    a. remove response bind, and taskId field
+       GET /members/g/invitations
+    b. return the babies the user is guest
+       GET /members/g/babieslist
+    c. Separate displayName of members' permission to memberName and relationship
+       GET /members/g/permissions
+
+**** NOTE ****
+  • 目前正在調整cropping 與壓縮圖片的順序, 大約還要再一個半小時才會弄上 staging, 好了之後我會在發信通知
+  • 另外 Schedule play 因為要把 default music pre build進去, 需要到 2/26才能 release
+
+/*****************************
+ Version: 1.14.1-rc4
+ Date: Febuary 8, 2021
+ *****************************/
+[Features / Modification]
+  • WeChat SSO 相關API 
+    POST /authorization/check_auth/{thirdPartyName} Check userProfile
+    POST /authorization/check_email/{thirdPartyName} Check whether user has already registered by email or not
+    POST /accounts/bind/{thirdPartyName} Bind account with 3rd party
+    POST /accounts/unbind/{thirdPartyName} Unbind account with 3rd party
+    *note* 有關 Apple login (phase 1) 原定今天release , 但時程上來不及將API的測試做完所以需要延至 2/22才 release 到 staging 環境 
+ 
+  • MultiUser 下面幾個API已經完成 
+    Scenario 1: Admin gets invitation code, and invitee accept 
+                (Admin) Create invitation code 
+                POST /members/g/invitations
+                (Invitee) check invitation code 
+                GET /members/g/invitations/{invitationCode}
+                   Example:
+                   https://staging.ipg-services.com//api/v1/members/g/invitations/NDhkOTU5ZjEtNzhlYy00OTRhLTllNzQtYzM2Mjk0N2QzMjYwfE9EbGhOMlZrTUdVdFltUmlZeTAwT1dJNExXRXdZall0Tm1ZNVlqUXlNR0ZsWWpReQ==
+                (Invitee) accept invitation 
+                PUT /members/g/invitations
+ 
+    Scenario 2: (Admin) list invitation (exclude accept)
+                GET /members/g/invitations
+ 
+    Scenario 3: (Admin/Invitee) list babies
+                GET /members/g/babieslist
+ 
+    Scenario 4: (Admin) list members, and member’s permission
+                GET /members/g/permissions
+ 
+{Known issue & on-going item}
+  • DELETE /members (預計 2/22) 
+  • PUT /members/g/permissions (no require for phase 1)
+
+/*****************************
+ Version: 1.13.1-rc.1
+ Date: November 4, 2020
+ *****************************/
+[Modification]
+  • add simplified Chinese context
+  • add email templates in simplified Chinese
+
+/*****************************
+ Version: 1.13.0-rc.2
+ Date: October 26, 2020
+ *****************************/
+[Modification]
+  • 完成同步special card文字內容(僅milestone, age) api
+  • 新增國家及時區for China
+  • Admin啟用新使用者api
+  • 裝置ota完成時回報版本加入硬體版號
+[Fixed Issues]
+  • 變更縮圖API加上變更時間
+  • 同步照片api加上縮圖名稱
+  • 修正驗證註冊bug
+
+/*****************************
+ Version: 1.12.5-rc.14
+ Date: September 21, 2020
+ *****************************/
+[Modification]
+  • endpoint [POST]/storages/ov 
+    /* upload video file (only for app) */
+    -- add parameters takeTime, offset
+       <note>
+       for backward compatible, if app does not set the values of takeTime
+       and offset, pixsee cloud will use current datetime as takeTime and 
+       the default value of offset is +00:00
+
+  • endpoint [PATCH]/devices/{sn}/versions
+    /* report current version (for device) */
+    -- device report to update firmware version when OOBE and OTA
+
+[Note]
+  - check APIs in https://staging.ipg-services.com/api-docs/
