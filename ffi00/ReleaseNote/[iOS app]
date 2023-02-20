@@ -1,0 +1,214 @@
+/*************************
+ Version: 1.0.17 (181)
+ Date: April 10, 2021
+ *************************/
+
+Delivered issues are listed below:
+•	WeChat login
+•	Scheduling Play
+•	"Music" description is duplicated in the music screen
+•	Voice recording
+•	[Family album] Photos are disappearing when user updates the app versions
+•	[CR] Event history alerts (strings)
+•	[CR] Make the Sign up page the First page at the first time user access it (after installation)
+•	[CR - Temporary] Hide voice record for scheduling play feature
+•	[E-mail] VSaaS update for multiple devices future feature
+•	Airtable - 292
+•	Bugzilla - 648
+
+Known Issues (We are already working on it in order to fix and delivery it next week):
+•	WeChat
+o	[CR] WeChat & Apple login] Complete your information screen error handling
+o	It’s possible to sign up with WeChat using an email that is already registered in Pixsee Account
+o	It’s possible to bind WeChat with many Pixsee Accounts
+o	[Improvement] The “change password” field in the User Profile screen appears quickly then disappears if user logins with a WeChat account (when they have sign up with this WeChat account). This field shouldn’t appear in this case.
+o	Security issue sent by Spencer. E-mail: WeChat/Apple SSO SECURITY RISK - check_email/ endpoint doesn't verify existing Pixsee account
+o	User loses Subscription after log in Pixsee using WeChat account
+•	Scheduling Play
+o	“Times” information is not correctly saved. E-mail: [ FFI00 ] FW 00.003.58 SCHEDULE_PLAY Issue
+o	The firmware still plays a scheduling that has been deleted from the device and from cloud
+o	App doesn't stop loading when user has 2 iPhones and logs in the same account and both tries to delete the same scheduled plan, one gets to do it, the other get stuck in the loading screen
+o	[CR][Scheduling Play & Voice Record] Error when trying to get schedule plan list related to voice recording
+•	Bugs found in Regression tests and Other issues that are being fixed
+o	[Playback] When user takes a picture from the playback screen, the photo taken is not the expected photo
+o	[Playback] Capture with timer available. It shouldn’t be.
+o	[Bugzilla#616] - Must be possible to share photos using QQ Mail 
+o	[CR] Update Sign in and Sign up screen layout
+o	[Streaming] Video recorder toast is not always shown when user records a small video
+
+/*************************
+ Version: 1.0.17 (180)
+ Date: April 2, 2021
+ *************************/
+{Features Modification}
+  •	Voice recorder feature
+  •	Strings translations updates
+
+{Fixed Bugs}
+  •	Airtable - 293
+  •	Airtable - 288
+  •	Airtable - 263 / Bugzilla - 595
+  •	Bugzilla - 648
+  •	Can’t upload the voice record file, it shows an error message
+  •	User should be redirected to the 3th card in the subscription screen
+  •	App closes when user tries to play for the first time a record in the pixsee device
+  •	In older iPhones like 6S and 5S, the app crashes when user records 2 audio files, one after the other and have the list almost full
+  •	The app crashes if in the 30th record, the user records an audio with 2 minutes longer
+
+{Known Issues}
+  •	We didn’t deliver the CR where we should update the voice record icon, because we need the “first using tips” animation with the new icon, so in order keep the consistence, we will implement after you sent us the file
+  •	Even with the new firmware update, there are times when the records are not downloaded by the pixsee device, so they are not played (mainly in older firmwares)
+  •	Airtable - 291 and 292 (Bug on pixsee cloud)
+
+  •	Improve the animation when user is redirected to the subscription screen from the voice recorder screen
+  •	There will appear duplicated file names  in the list because the app was crashing in a very specific situation in older iPhones, so it took a really long time to fix, but the file names were broken in this fix and it will take more time to solve, that’s why we didn’t fix it yet
+  •	The upload animation has broken for small records. This also was broken with the previous fix
+  •	In the recorder screen, when user stops to record, there is an overlay of images.
+
+{Suggestion: Possible improvement}
+  •	In the voice recording screen, when the user has many records in the list so that they should scroll to see all of them, the “record a new audio” button (+) overrides the options to delete and edit. How should we solve it? 
+Would this be an acceptable resolution?
+
+
+/*************************
+ Version: 1.0.17 (177)
+ Date: March 1, 2021
+ *************************/
+{Fixed Issues}
+  -- [airtable#283] Delete voice record should be [delete] icon, not [un-sync] icon
+  -- [airtable#284] music button didn't resume to original icon after voice record played
+  -- [airtable#285] Maximum of voice record should be 120 second
+  -- [airtable#286] Unsubscribe users could only play 10 seconds of voice record on pixsee device
+  -- [airtable#288] Content description of voice record isn't correct
+{Known Issues}
+  -- Regarding the WeChat login and Apple Login, we still need some endpoints updates for this feature so we won't be able to delivery it tomorrow, as we had planned
+
+
+/*************************
+ Version: 1.0.17 (176)
+ Date: Febuary 19, 2021
+ *************************/
+{Fixed Issues}
+  -- voice record bug fix
+
+/*************************
+ Version: 1.0.17 (175)
+ Date: Febuary 9, 2021
+ *************************/
+{Features}
+  -- voice record
+    ** still some known issues that is working on resolving
+{Known issues on voice record}
+(a) problems on soothing music feature if user chooses a voice recording audio
+    -- in this case, if user hasn't played the record on pixsee, app is not able to make
+       device download this record
+    -- the cry detection updates are not saved if user chooses a voice recorder to
+       play nor the voice name is shown next to the "music" option at cry detection screen
+(b) when the record fails to upload due to a Wi-Fi problem, when user retries the
+    upload, it's always failed, so user can't add more voice recorders due the
+    business rule where the "add" button should be disable while there is an audio 
+    file whose upload has failed
+(c) due these bugs, app still can't test the "delete a voice record that has been used
+    by the soothing feature" scenario
+
+/*************************
+ Version: 1.0.12 (160)
+ Date: November 27, 2020
+ *************************/
+{Fixed Issues}
+  •	[Airtable - 272] Thanksgiving card is not generated
+  •	Update China strings
+  •	[Airtable - 269] Holiday & age cards opened from the timeline, are opened in edit mode. Should be in view mode.
+  •	[E-mail] App version 158 associated with device versions (1.000.00 or 1.002.00) are sending an unexpected temperature notification
+  •	[E-mail] change TUTK default password on latest device FW only
+  •	[E-mail - background play] Background play symbol should still be visible when user mutes the streaming
+  •	[E-mail - background play] The background play should resume when user receives a phone call
+  •	Timezone is not selected at the setup's end
+  •	[E-mail] IOS 14 - layout is still wrong in one page: after confirming the code sent by e-mail when user changes the password
+  •	[Airtable - 264]Page is not loading Chinese strings
+  •	China holidays
+  •	[Airtable - 255] Change stop button layout
+  •	[Airtable - 236] Incorrect single photo view layout on landscape
+  •	[Airtable - 202] Operating problems in event history video playing 
+  •	[E-mail] Wi-Fi settings error handling: Wi-fi name field is now completed with the current wi-fi’s name when user cancel the Wi-Fi setting
+  •	[Airtable-189] Default image’s position should be the center of image
+  •	[Airtable-243] Wrong panel for Audio Background play
+
+{Known Issues}
+  •	family's album video is not played on landscape mode
+
+/*************************
+ Version: 1.0.12 (158)
+ Date: November 12, 2020
+ *************************/
+{Fixed Issues}
+  •	[Airtable#233] - New toast (fix the toast color)
+  •	[Airtable#240] - Fail to share more than 5 photos with Line app
+  •	[Airtable#257] - Update chinese strings for the crying feature
+  •	[Airtable#260] - Crop isn't following AI crop data when open thumbnail editor for the first time
+    o	We are still having some troubles when user edits the photo on android to open the photo's thumbnail on the corrected position, and the same occurs when user edits on ios and opens it on android
+  •	[Airtable#261] - Password rules checkpoints element has broken it's layout
+  •	[Airtable#230] - The unread ring of Cover won't disappear even we tap it explicitly or scroll over the photos inpliedly
+  •	[Airtable#243] - Change the background play symbol
+    o	Symbol cannot be removed from the lock screen, and we can not always back to home screen, it will always back to the page before user puts the app on background or lock the screen
+    o	Known issue: if user unmute the app, enable the background play and lock the screen, when he gets back to the app and mute the streaming, if he puts the app on the background, the microphone symbol will not disapear
+  •	[email]: Hide temporary the third card from the subscription page
+  •	[email] App is closing after user saves a family's album video on his iPhone
+  •	Error pop up when we try to reproduce a shared video with Line app
+  •	[Airtable#241] Video lost it's sound after shared to line from family album  
+  •	Free Trial (still needs the backend to provide us the trial end period, please check the e-mail: [FFI00] iOS trial period)
+  •	[Airtable#262] Environment detection can't save setting
+  •	[Airtable#131] Relationship field in OOBE has no default value (default: “mommy”)
+  •	[Airtable#254] Photo is saved with the current time, even though user takes it in other playback's time
+  •	Update Notification String in order to use the baby's name
+  •	[email] Update endpoints to query locations/ timezones
+  •	[Bugzilla#605] After delete an event video on full screen, app crashed (cannot tap anything)
+
+{Tasks for China SKU}
+  •	Strings / Nation/ Timezone
+  •	Disable subscription
+  •	[e-mail] Update endpoints to query locations/ timezones
+
+/*************************
+ Version: 1.0.12 (157)
+ Date: October 31, 2020
+ *************************/
+[CR / Features]
+  • Remove the crying feedback
+  • Change OOBE/Wi-fi reset screens
+  • Due to the last weekly decisions, we have removed the voice recording feature from this build (there are still some bugs that need to be fixed.
+  • [e-mail] VSaaS crying and area detection videos do not appear on event history
+  • Remove the "device mute hint" when user uses the 2-way talk feature
+  • Update strings and include Simple Chinese translation version
+  • Thumbnail was not updated in other device logged with the same account
+  • Device Management reset and OOBE flow -> user stops on pairing screen (fixed)
+  • Control by second on playback. Save video/capture photo by playback’s time stamp
+
+[Fixed Issues]
+  • [Airtable#256] After edit the thumbnail, user should be redirected to family album, not single photo view
+  • [Airtable#253] previous cry Json file should updated
+  • [Airtable#233] New toast after saving a video record
+  • [Airtable#244] Improve the playback movement precision
+  • [Airtable#239] Turn off soothing music on Android (device stop playing music), but iOS still remain playing mode
+      - App was taking some time to update the status because it took 2 minutes to verify the device status.
+        We have changed to 1 minute, so more or less 1 minute after the sounds stop playing the button status will be updated
+  • Reduce setting levels & re-arrange information architecture in device settings, change to query device settings from cloud (instead of from device)
+    - We have updated the temperature unit in order to work with C and F
+
+/*************************
+ Version: 1.0.12 (156)
+ Date: October 23, 2020
+ *************************/
+[CR / Features]
+  • Voice record/management
+    o Implemented the voice recording amplitude animation
+    o Empty list message is visible when user has records listed
+    o Change the swipe animation in order to get just like the event history animation
+    o Duplicated audio files
+    o Change voice recording time notation
+    o Don’t allow user to save an audio file with empty title
+    o Audio is recording even before user approves the microphone usage 
+    o Voice Record shouldn't be available on soothing music
+  • Photo thumbnail editor
+    o Fixed saving bug
+    

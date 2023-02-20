@@ -1,0 +1,147 @@
+Event Type
+500:”reserved”
+501:”e-fence”
+502:”environment-warning”
+503:”cry-detection”
+
+Customized payload
+1.	On android phone, 
+http://push.iotcplatform.com:7379/tpns?cmd=client
+&os=android&appid={%APPID%}&udid={%UDID%}&lang= enUS
+&token= {%TOKEN%}&bgfetch=1&dev=0
+
+http://push.iotcplatform.com:7379/tpns?cmd=mapping&os=android
+&appid={%APPID%}&udid={%UDID%}&interval=10
+&format=V2FybmluZzoge2Rldl9uYW1lfSB7ZXZlbnRfdHlwZX0=
+&customized_payload=base64({"content_available":true,"notification":{"title":{%MYTOPIC%}}}) 
+
+http://push.iotcplatform.com:7379/tpns?
+cmd=event&uid={%UID}&customized_payload=base64({"MYTOPIC ":" info"})&debug=1
+
+2.	On ios phone, 
+http://push.iotcplatform.com:7379/tpns?
+cmd=client&os=ios&appid={%APPID%}&
+udid={%UDID%}& token= {%TOKEN%}&
+lang=enUS&bgfetch=1&dev=0
+
+http://push.iotcplatform.com:7379/tpns?
+cmd=mapping& &os={%OS%}&
+appid={%APPID%}&uid={%UID}&
+udid={%UDID%}&alias=frontdoor
+&customized_payload =base64({"content-available":true,"alert":{"title":{%MYTOPIC%}}}) 
+
+http://push.iotcplatform.com:7379/tpns?
+cmd=event&uid={%UID}&customized_payload=base64({"MYTOPIC ":" info"})&debug=1
+
+
+*********************************************************************************************************
+1.	iOS 
+(1)	client 
+/tpns?cmd=client&os=ios&appid={%APPID%}&udid={%UDID%}&token={%TOKEN%}&lang={%LANG %}&bgfetch=1&dev=0
+
+(2)	mapping 
+/tpns?cmd=mapping&os=ios&appid={%APPID%}&uid={%UID%}&udid={%UDID%}&format= e2Rldl9uYW1lfSB7ZXZlbnRfdHlwZX0NCnttc2d9&interval=3&customized_payload=eyJjb250ZW50LWF2YWlsYWJsZSI6MSwiYWxlcnQiOnsidGl0bGUiOnslTVlUT1BJQyV9LCJib2R5Ijp7JU1ZQk9EWSV9fX0=
+
+PS:
+format -> e2Rldl9uYW1lfSB7ZXZlbnRfdHlwZX0NCnttc2d9, base64 decode->
+{dev_name} {event_type}
+{msg}
+
+customized_payload -> eyJjb250ZW50LWF2YWlsYWJsZSI6MSwiYWxlcnQiOnsidGl0bGUiOnslTVlUT1BJQyV9LCJib2R5Ijp7JU1ZQk9EWSV9fX0=
+base64 decode->
+{"content-available":1,"alert":{"title":{%MYTOPIC%},"body":{%MYBODY%}}}
+
+(3)	push
+/tpns?cmd=event&uid={%UID%}&dev_name=DeviceName&event_type=13&msg=MyHouse&customized_payload=eyJNWVRPUElDIjoie1widHlwZVwiOntcIjBcIjpcIm91dFwiLFwiMVwiOlwiaW5cIn19IiwiTVlCT0RZIjoiMCJ9&debug=1
+
+PS:
+customized_payload ->
+eyJNWVRPUElDIjoie1widHlwZVwiOntcIjBcIjpcIm91dFwiLFwiMVwiOlwiaW5cIn19IiwiTVlCT0RZIjoiMCJ9
+
+base64 decode->
+{"MYTOPIC":"{\"type\":{\"0\":\"out\",\"1\":\"in\"}}","MYBODY":"0"}
+
+
+
+
+
+
+
+
+
+
+
+一.	Android 
+
+(1)	client 
+/tpns?cmd=client&os=android&appid={%APPID%}&udid={%UDID%}&token={%TOKEN%}&lang={%LANG %}&bgfetch=1&dev=0
+
+(2)	mapping 
+/tpns?cmd=mapping&os=android&appid={%APPID%}&uid={%UID%}&udid={%UDID%}&format= e2Rldl9uYW1lfSB7ZXZlbnRfdHlwZX0NCnttc2d9&interval=3&customized_payload=eyJjb250ZW50X2F2YWlsYWJsZSI6dHJ1ZSwibm90aWZpY2F0aW9uIjp7InRpdGxlIjp7JU1ZVE9QSUMlfSwiYm9keSI6eyVNWUJPRFklfX19
+
+PS:
+format -> e2Rldl9uYW1lfSB7ZXZlbnRfdHlwZX0NCnttc2d9, base64 decode->
+{dev_name} {event_type}
+{msg}
+
+customized_payload -> eyJjb250ZW50X2F2YWlsYWJsZSI6dHJ1ZSwibm90aWZpY2F0aW9uIjp7InRpdGxlIjp7JU1ZVE9QSUMlfSwiYm9keSI6eyVNWUJPRFklfX19
+base64 decode->
+{"content_available":true,"notification":{"title":{%MYTOPIC%},"body":{%MYBODY%}}}
+
+(4)	push
+/tpns?cmd=event&uid={%UID%}&dev_name=DeviceName&event_type=13&msg=MyHouse&customized_payload=eyJNWVRPUElDIjoie1widHlwZVwiOntcIjBcIjpcIm91dFwiLFwiMVwiOlwiaW5cIn19IiwiTVlCT0RZIjoiMCJ9&debug=1
+
+PS:
+customized_payload ->
+eyJNWVRPUElDIjoie1widHlwZVwiOntcIjBcIjpcIm91dFwiLFwiMVwiOlwiaW5cIn19IiwiTVlCT0RZIjoiMCJ9
+
+base64 decode->
+{"MYTOPIC":"{\"type\":{\"0\":\"out\",\"1\":\"in\"}}","MYBODY":"0"}
+
+
+
+
+
+=======================================================================================
+e-fence
+curl --location --request GET 'http://push.iotcplatform.com:7379/tpns?cmd=event
+        &uid=UID
+        &msg=efence
+        &event_type=501
+        &customized_payload=base64({"event_info": {
+                "type": {0: out, 1: in}
+        }})'
+
+ex1:{"event_info":{"type":0}}
+eyJldmVudF9pbmZvIjp7InR5cGUiOjB9fQ==
+
+ex2:{"event_info":{"type":1}}
+eyJldmVudF9pbmZvIjp7InR5cGUiOjF9fQ==
+
+Environment
+curl --location --request GET 'http://push.iotcplatform.com:7379/tpns?cmd=event
+        &uid=UID
+        &msg=environment
+        &event_type=502
+        &customized_payload=base64({"event_info": {
+                "temperature": INT,
+                "humidity": INT,
+                "tempStatus": -1(under minimum) | 0(ok) | 1(over maximum),
+                "humStatus": -1(under minimum) | 0(ok) | 1(over maximum)
+        }})'
+
+ex:{"event_info":{"temperature":30,"humidity":70,"tempStatus":0,"humStatus":1}}
+  eyJldmVudF9pbmZvIjp7InRlbXBlcmF0dXJlIjozMCwiaHVtaWRpdHkiOjcwLCJ0ZW1wU3RhdHVzIjotMSwiaHVtU3RhdHVzIjoxfX0=
+
+CRY
+curl --location --request GET 'http://push.iotcplatform.com:7379/tpns?cmd=event
+        &uid=UID
+        &msg=cry
+        &event_type=503
+        &customized_payload=base64({"event_info": {
+                "testResult": "0 @ [9.3914318e-01 7.2440315e-07 4.2886545e-12 6.0856156e-02]",
+                "eid": STRING
+        }})'
+
+ex:{"event_info":{"testResult":"0 @ [9.3914318e-01 7.2440315e-07 4.2886545e-12 6.0856156e-02]","eid":"123456"}}
+eyJldmVudF9pbmZvIjp7InRlc3RSZXN1bHQiOiIwIEAgWzkuMzkxNDMxOGUtMDEgNy4yNDQwMzE1ZS0wNyA0LjI4ODY1NDVlLTEyIDYuMDg1NjE1NmUtMDJdIiwiZWlkIjoiMTIzNDU2In19

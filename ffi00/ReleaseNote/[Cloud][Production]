@@ -1,0 +1,20 @@
+/***************************
+ Version: 1.14.2
+ Date: March 15, 2021
++***************************/
+1.	Enable pre-filter v2
+2.	Enable Apple Store subscription status checking mechanism
+3.	Change log location from blob storage to file share, it works on main service and baby delete task
+
+/***************************
+ Version: 1.12.5
+ Date: August 25, 2020
++***************************/
+
+[Modification]
+  - [event]
+     . cancel the filter that skip the 'future' event pushed by device 
+
+[Fixed Issues]
+  - fixed an issue on offset of uploaded photos by Android app
+  

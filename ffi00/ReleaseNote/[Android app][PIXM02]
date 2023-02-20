@@ -1,0 +1,46 @@
+/********************************+
+ Version: 2.0.2
+ Date: April 2, 2021
+ ********************************/
+Fixed bugs:
+•	PIXIE-3201 - [Android][Airtable - 462][voice record] Can't preview voice on mobile
+•	PIXIE-3204 - [Android][Airtable - 491][Voice Record] incorrect fileName of Voice Record
+•	PIXIE-3205 - [Android][Airtable - 492]Maximum of voice record should be 120 second
+•	PIXIE-3206 - [Android][Airtable - 494]Voice record can't be played on device (even subscribed or un-subscribed user)
+•	PIXIE-3330 - [Android][Pixsee][China][Family Album] Unable to Share Photos
+•	PIXIE-3331 - [Android][Pixsee][China] Unable to Play Event Video
+•	PIXIE-3332 - [Android][Pixsee][China][Baby Timeline] Wrong Age
+•	PIXIE-3347 - Update the Voice Recorder icon
+•	PIXIE-3287 - Complete push notification feature using JPush and removed tutkLibPush completely
+Known issues:
+•	PIXIE-3335 - [Android][Pixsee][China][Baby Timeline] Duplicated Milestone
+•	PIXIE-3362 - [Android][Global] The baby monitor's music-playing status display for when playing music/voice continues even after the sound is finished
+•	PIXIE-3346 - [Android][Global] Missing Voice Recording inside Soothing Music
+Note:
+Suppose 拍宝儿2.0.1 didn’t change KPNS implementation flow, to logout from 2.0.1 will unmap the binding with KPNS.  Which means users will not receive notification if logout.
+We should notify customer service team that we should suggest Android users to logout app before update 拍宝儿 from 2.0.1 to 2.0.2.
+
+/********************************+
+ Version: 2.0.2
+ Date: March 30, 2021
+ ********************************/
+
+ • complete push notification feature using JPush
+ • removed tutkLibPush completely
+ • fixed some small issues related to push notification
+ 
+/********************************+
+ Version: 10.40.10_cn
+ Date: December 15, 2020
+ ********************************/
+{Fixed Issues}
+  • Fix crash on Event History due to different binding server url format on CH SKU
+
+/********************************+
+ Version: 10.40.9_cn
+ Date: December 12, 2020
+ ********************************/
+{CR & Features}
+  •	[PIXM02][App] TUTK CN VSaaS API updates;
+{Other Fixed}
+  •	Change chinese variant according to device language configuration so the cloud can list the correct country list;

@@ -1,0 +1,38 @@
+/****************************
+ Version: 1.003.03
+ Date: Febuary 20, 2020
+ ****************************/
+ -- [WIFI] Reduce WiFi power settings to meet FCC.
+ 
+ <note>
+This release is for US SKU, it is based on 1.003.02.
+Only modified WIFI power to meet FCC requirement.
+
+In the further, we will use dynamic WiFi power control by HW ID(sku).
+There is no need extra device firmware for US sku.
+Device firmware only have two versions: worldwide and China.
+The source code is still one main truck for worldwide and China, but build with different version number
+
+/****************************
+ Version: 1.003.02
+ Date: December 8, 2020
+ ****************************/
+ -- [Event Recording] Fix token inconsistent after 
+
+/****************************
+ Version: 1.003.01
+ Date: November 14, 2020
+ ****************************/
+{Fixed Issues}
+  - [FQA] fix FQA test key error
+
+<note>
+  1. Modify FQA button test tool, this change won’t impact others.
+  2. Add FQA test case into RD unit test process.
+
+/****************************
+ Version: 0.003.47
+ Date: November 4, 2020
+ ****************************/
+This build is RC2 for production 1.003.00
+

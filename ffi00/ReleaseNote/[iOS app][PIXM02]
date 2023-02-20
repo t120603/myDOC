@@ -1,0 +1,24 @@
+/*************************
+ Version: 2.0.2 (9)
+ Date: Febuary 19, 2021
+ *************************/
+{Fixed Issues}
+  •	Hide voice record, scheduling play and Capture 5M features for firmware versions that doesn't support this features
+  •	URLs Global version updates when user is with "simplified Chinese" as main language
+
+/*************************
+ Version: 0.1 (4)
+ Date: December 16, 2020
+ *************************/
+{Fixed Issues}
+  • [Airtable-276] Change the background play default value to disabled
+  • Event history videos are not played nor have the thumbnail
+  • Incorrect temperature
+  • [China SKU] Contract creation date
+  • [Airtable - 275] The background play symbol appears when user is not logged in the app
+
+{Known issues}
+  • OTA upgrade option is not available/shown on pixsee profile page
+  • Videos recorded on the playback screen should be saved as a video recorded on the playback selected time
+  • Local storage almost full and full storage pop ups are not shown
+
