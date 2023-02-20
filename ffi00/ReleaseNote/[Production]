@@ -1,8 +1,0 @@
-/**********************************
- upgrade pixsee cloud to 1.13.1
- date: 2020-10-29 18:00
- **********************************/
-
-▪ 刪除未訂閱用戶超過30天device拍攝的照片
-▪ 新增回覆使用者要求下載帳號內所有檔案的email template
-▪ 於endpoint [PATCH]/devices/{sn}/versions新增"hwVer"參數
