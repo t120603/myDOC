@@ -30,6 +30,21 @@ A[Hard edge] -->B(Round edge)
     C -->|Two| E[Result two]
 ```
 
+```mermaid
+stateDiagram
+  state "Ready" as INIT
+  state "Preview" as PREV
+  state "Scanning" as SCAN
+  state "Stop" as STOP
+  
+  [*] --> INIT: HW ready
+  INIT --> INIT: system setting
+  INIT --> PREV: insert slides
+  PREV --> SCAN: scan
+  SCAN --> STOP: output image
+  STOP --> [*]: exit application
+```
+
 ![Class Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/t120603/myDOC/master/UML/statediagram.puml)
 
 ![Class Diagram](http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/t120603/myDOC/master/UML/instance.puml)
