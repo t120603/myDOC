@@ -1,0 +1,13 @@
+@startuml
+
+Instance <|-- RootObject
+
+class Instance {
+  --  Constructors & desctructors --
+  - Instance()
+  
+  -- Public methods --
+  + Initialize() : bool
+}
+
+@enduml
